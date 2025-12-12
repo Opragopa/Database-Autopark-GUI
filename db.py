@@ -40,6 +40,6 @@ def init_default_users():
                     ("admin", admin_hash, "admin", "user", user_hash, "user")
                 )
                 conn.commit()
-                print("✅ Created default users: admin / user")
+                print("Created default users: admin / user")
     finally:
         conn.close()
