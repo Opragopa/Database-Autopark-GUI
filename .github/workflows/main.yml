@@ -1,0 +1,22 @@
+name: Generate Repo Diagram
+
+on:
+  push:
+    branches:
+      - main  # или другая ветка, которую вы хотите отслеживать
+
+jobs:
+  visualize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate diagram
+        uses: githubocto/repo-visualizer@0.7.1
+        with:
+          output_file: "diagram.svg"            # Путь для сохранения SVG
+          excluded_paths: "node_modules,dist"   # Папки, которые не включать
+          root_directory: ""                    # Корень репозитория (можно указать, например, "src")
+          should_push: true                     # Создавать коммит с обновлённой диаграммой?
+          commit_message: "Update repo diagram [skip ci]"
