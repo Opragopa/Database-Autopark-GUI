@@ -50,14 +50,16 @@ class DriverForm(QDialog):
         last = self.last_edit.text().strip()
         father = self.father_edit.text().strip()
 
-        if not last or not validate_name_part(last):
-            QMessageBox.warning(self, "Ошибка", "Фамилия обязательна и должна содержать только кириллицу")
+        if not last or not validate_name_part(last, "last"):
+            QMessageBox.warning(self, "Ошибка", "Фамилия должна быть реальной русской фамилией")
             return
-        if first and not validate_name_part(first):
-            QMessageBox.warning(self, "Ошибка", "Имя должно содержать только кириллицу")
+
+        if first and not validate_name_part(first, "first"):
+            QMessageBox.warning(self, "Ошибка", "Имя должно быть реальным русским именем")
             return
-        if father and not validate_name_part(father):
-            QMessageBox.warning(self, "Ошибка", "Отчество должно содержать только кириллицу")
+
+        if father and not validate_name_part(father, "father"):
+            QMessageBox.warning(self, "Ошибка", "Отчество должно быть реальным русским отчеством")
             return
 
         try:

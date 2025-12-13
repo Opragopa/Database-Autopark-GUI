@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt
 from db_utils import fetch_journal_with_details, delete_journal
 from forms.journal_form import JournalForm
-from table_utils import NumericQTableWidgetItem  # ← ИМПОРТ
+from table_utils import NumericQTableWidgetItem
 
 class JournalView(QWidget):
     def __init__(self, role, parent=None):

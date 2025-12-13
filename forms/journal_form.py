@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
     QMessageBox, QVBoxLayout, QDateTimeEdit
 )
 
-from db_utils import get_all_cars, get_all_routes, check_car_returned
+from db_utils import get_all_cars_for_combo, get_all_routes_for_combo, check_car_returned
 
 
 class JournalForm(QDialog):
@@ -26,8 +26,12 @@ class JournalForm(QDialog):
         self.car_combo = QComboBox()
         self.route_combo = QComboBox()
 
-        cars = get_all_cars()
-        routes = get_all_routes()
+        cars = get_all_cars_for_combo()
+        routes = get_all_routes_for_combo()
+
+        self.car_ids = [cid for cid, _ in cars]
+        self.route_ids = [rid for rid, _ in routes]
+
         self.car_combo.addItems([f"{num} (ID: {cid})" for cid, num in cars])
         self.route_combo.addItems([f"{name} (ID: {rid})" for rid, name in routes])
 
